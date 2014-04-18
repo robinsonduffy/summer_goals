@@ -1,4 +1,4 @@
-Stampson::Application.routes.draw do
+ChoreChart::Application.routes.draw do
   get "pages/home"
   root :to => "pages#home"
   

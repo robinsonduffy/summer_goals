@@ -4,4 +4,4 @@
 require File.expand_path('../config/application', __FILE__)
 require 'rake'
 
-Stampson::Application.load_tasks
+ChoreChart::Application.load_tasks
