@@ -3,6 +3,6 @@
 			
 	%ul#tasks
 		- @tasks.each do |task|
-			%li
+			%li{:class => ("disabled" if @kid.completed_tasks.where(:date => @date, :task_id => task.id).first.try(:task_id) == task.id)}
 				%label{:for => "task-#{task.id}"}= task.name
 				%input{:id => "task-#{task.id}", :type => "radio", :name => "task_id", :value => task.id, :disabled => @kid.completed_tasks.where(:date => @date, :task_id => task.id).first.try(:task_id) == task.id, :onchange => "$('#chore-chart').submit()"}
