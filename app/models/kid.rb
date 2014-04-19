@@ -1,4 +1,6 @@
 class Kid < ActiveRecord::Base
+  has_many :completed_tasks
+  
   attr_accessible :name, :points
   
   validates :name, :presence => true, 
