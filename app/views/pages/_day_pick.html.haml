@@ -1,3 +1,5 @@
+%div#points
+	%p#star= @kid.points
 %ul#days
 	%li{:class => ("selected" if @day_id == 0)}= link_to "Sunday", chore_chart_day_path(@kid.id,0)
 	%li{:class => ("selected" if @day_id == 1)}= link_to "Monday", chore_chart_day_path(@kid.id,1)
