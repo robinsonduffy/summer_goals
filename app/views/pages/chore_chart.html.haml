@@ -1,10 +1,9 @@
 = render "day_pick"
 = @date
-%form{:method => :post}
+%form#chore-chart{:method => :post}
 			
 	%ul#tasks
 		- @tasks.each do |task|
 			%li
 				%label{:for => "task-#{task.id}"}= task.name
-				%input{:id => "task-#{task.id}", :type => "radio", :name => "task_id", :value => task.id, :disabled => @kid.completed_tasks.where(:date => @date, :task_id => task.id).first.try(:task_id) == task.id}
-	= submit_tag "Add Task"
+				%input{:id => "task-#{task.id}", :type => "radio", :name => "task_id", :value => task.id, :disabled => @kid.completed_tasks.where(:date => @date, :task_id => task.id).first.try(:task_id) == task.id, :onchange => "$('#chore-chart').submit()"}
