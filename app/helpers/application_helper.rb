@@ -1,6 +1,6 @@
 module ApplicationHelper
   def title
-    @base_title = "Rails Skeleton"
+    @base_title = "ChoreChart"
     if @title.nil?
       @base_title
     else
