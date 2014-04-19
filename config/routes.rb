@@ -1,9 +1,11 @@
 ChoreChart::Application.routes.draw do
   get "pages/home"
-  root :to => "pages#home"
+  root :to => "pages#choose_kid"
   
   get "login" => "sessions#new", :as => "login"
   get "logout" => "sessions#destroy", :as => "logout"
+  
+  get "chore_chart/:kid_id", :to => "pages#chore_chart", :as => "chore_chart"
   resources :sessions, :only => [:create]
 
   resources :users, :except => [:show]
