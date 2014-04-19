@@ -1,0 +1,3 @@
+%ul
+	- @kids.each do |kid|
+		%li= link_to kid.name, edit_kid_path(kid)

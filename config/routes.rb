@@ -1,5 +1,5 @@
 ChoreChart::Application.routes.draw do
-  get "pages/home"
+  
   root :to => "pages#choose_kid"
   
   get "login" => "sessions#new", :as => "login"
@@ -12,6 +12,8 @@ ChoreChart::Application.routes.draw do
   resources :sessions, :only => [:create]
 
   resources :users, :except => [:show]
+  
+  resources :kids, :only => [:edit, :index, :update]
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

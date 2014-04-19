@@ -1,7 +1,7 @@
 body {width:1024px;}
 #points {position:absolute; right:0; top:0;}
 #points #star {margin: 10px; text-align: center; background-image: url('/images/one_star.png'); width: 100px; height: 100px; line-height: 118px; font-size: 40px;}
-ul#days {float:left; list-style:none; width:975px; margin:0; padding:0;}
+ul#days {float:left; list-style:none; width:975px; margin:0; padding:0; margin-top:40px;}
 ul#days li {float: left;}
 ul#days li a {float:left;
 	border: 1px solid #666;
@@ -26,5 +26,9 @@ ul#tasks li label img {width:100px; height:100px;}
 .choose-kid-name {font-size:70px; font-weight:bold; text-decoration:none; color:black;float: left; clear: left; padding: 30px; }
 
 
-#debug-info {display:none;}
+
+#footer {clear:both; float:left; width:100%; margin-top:30px; border-top:1px dashed #ccc;}
+#user-navigation {text-align:right; width:90%; list-style:none;}
+#user-navigation li {float:left; margin-right:30px;}
+#debug-info {clear:both; margin-top:30px; float:left;}
 
