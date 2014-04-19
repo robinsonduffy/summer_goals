@@ -23,7 +23,7 @@ ul#tasks li input {display:none;}
 ul#tasks li.disabled label {background-color:#ccc;}
 ul#tasks li label img {width:100px; height:100px;}
 
-.choose-kid-name {font-size:70px; font-weight:bold; text-decoration:none; color:black; }
+.choose-kid-name {font-size:70px; font-weight:bold; text-decoration:none; color:black;float: left; clear: left; padding: 30px; }
 
 
 #debug-info {display:none;}
