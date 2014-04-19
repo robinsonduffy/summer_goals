@@ -16,9 +16,15 @@ ul#days li a {float:left;
 }
 ul#days li.selected a {background-color:#ccc;}
 
-ul#tasks {float:left; clear:left; margin:0; margin-top:100px; list-style:none;}
+ul#tasks {float:left; clear:left; margin:0; margin-top:50px; list-style:none; padding:0px;}
 ul#tasks li {float:left;}
 ul#tasks li label {float:left; border:1px solid #666; margin:10px; padding:10px; width:200px; height:130px; font-size:20px; text-align:center;}
 ul#tasks li input {display:none;}
 ul#tasks li.disabled label {background-color:#ccc;}
 ul#tasks li label img {width:100px; height:100px;}
+
+.choose-kid-name {font-size:70px; font-weight:bold; text-decoration:none; color:black; }
+
+
+#debug-info {display:none;}
+
