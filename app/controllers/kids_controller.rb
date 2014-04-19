@@ -23,5 +23,10 @@ class KidsController < ApplicationController
       render :edit
     end
   end
-
+  
+  def completed_tasks
+    @kid = Kid.find(params[:kid_id])
+    @completed_tasks = @kid.completed_tasks.order('date desc')
+    @title = "#{@kid.name} - Completed Tasks"
+  end
 end

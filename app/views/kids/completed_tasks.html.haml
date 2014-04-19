@@ -1,0 +1,12 @@
+%table#kid-completed-tasks
+	%thead
+		%tr
+			%th Date
+			%th Task
+			%th Points
+	%tbody
+		- @completed_tasks.each do |completed_task|
+			%tr
+				%td= completed_task.date
+				%td= completed_task.task.name
+				%td= completed_task.task.points

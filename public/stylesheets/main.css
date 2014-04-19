@@ -25,7 +25,8 @@ ul#tasks li label img {width:100px; height:100px;}
 
 .choose-kid-name {font-size:70px; font-weight:bold; text-decoration:none; color:black;float: left; clear: left; padding: 30px; }
 
-
+table#kid-completed-tasks {width:500px; border:1px solid #ccc;}
+table#kid-completed-tasks td {border:1px solid #ccc;} 
 
 #footer {clear:both; float:left; width:100%; margin-top:30px; border-top:1px dashed #ccc;}
 #user-navigation {text-align:right; width:90%; list-style:none;}
