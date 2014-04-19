@@ -1,31 +1,10 @@
+= render "day_pick"
+= @date
 %form{:method => :post}
-	= hidden_field_tag "kid_id", @kid.id
-	%ul#days
-		%li
-			%label{:for => "sunday"} Sunday
-			%input#sunday{:type => "radio", :name => "day", :value => "0"}
-		%li
-			%label{:for => "monday"} Monday
-			%input#monday{:type => "radio", :name => "day", :value => "1"}
-		%li
-			%label{:for => "tuesday"} Tuesday
-			%input#tuesday{:type => "radio", :name => "day", :value => "2"}
-		%li
-			%label{:for => "wednesday"} Wednesday
-			%input#wednesday{:type => "radio", :name => "day", :value => "3"}
-		%li
-			%label{:for => "thursday"} Thursday
-			%input#thursday{:type => "radio", :name => "day", :value => "4"}
-		%li
-			%label{:for => "friday"} Friday
-			%input#friday{:type => "radio", :name => "day", :value => "5"}
-		%li
-			%label{:for => "saturday"} Saturday
-			%input#saturday{:type => "radio", :name => "day", :value => "6"}
 			
 	%ul#tasks
 		- @tasks.each do |task|
 			%li
 				%label{:for => "task-#{task.id}"}= task.name
-				%input{:id => "task-#{task.id}", :type => "radio", :name => "task", :value => task.id}
+				%input{:id => "task-#{task.id}", :type => "radio", :name => "task_id", :value => task.id, :disabled => @kid.completed_tasks.where(:date => @date, :task_id => task.id).first.try(:task_id) == task.id}
 	= submit_tag "Add Task"

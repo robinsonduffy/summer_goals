@@ -5,7 +5,10 @@ ChoreChart::Application.routes.draw do
   get "login" => "sessions#new", :as => "login"
   get "logout" => "sessions#destroy", :as => "logout"
   
-  get "chore_chart/:kid_id", :to => "pages#chore_chart", :as => "chore_chart"
+  get "chore_chart/:kid_id", :to => "pages#chore_chart_date_select", :as => "chore_chart"
+  get "chore_chart/:kid_id/:day_id", :to => "pages#chore_chart", :as => "chore_chart_day"
+  post "chore_chart/:kid_id/:day_id", :to => "pages#chore_chart_save"
+  
   resources :sessions, :only => [:create]
 
   resources :users, :except => [:show]
