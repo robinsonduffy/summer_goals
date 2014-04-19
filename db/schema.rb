@@ -11,11 +11,19 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140419003239) do
+ActiveRecord::Schema.define(:version => 20140419004913) do
 
   create_table "kids", :force => true do |t|
     t.string   "name",                      :null => false
     t.integer  "points",     :default => 0
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "tasks", :force => true do |t|
+    t.string   "name",                      :null => false
+    t.integer  "points",     :default => 1, :null => false
+    t.string   "image"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
