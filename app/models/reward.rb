@@ -1,6 +1,6 @@
 class Reward < ActiveRecord::Base
   
-  attr_accessible :name, :points
+  attr_accessible :name, :points, :image
   
   validates :name,  :presence => true, 
                     :uniqueness => {:case_sensitve => false}

@@ -20,6 +20,8 @@ ChoreChart::Application.routes.draw do
   
   resources :completed_tasks, :only => [:destroy]
   
+  resources :rewards, :except => [:edit]
+  
   
 
   # The priority is based upon order of creation:

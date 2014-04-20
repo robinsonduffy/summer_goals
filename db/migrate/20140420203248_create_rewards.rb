@@ -3,6 +3,7 @@ class CreateRewards < ActiveRecord::Migration
     create_table :rewards do |t|
       t.string :name, :null => false
       t.integer :points, :default => 1, :null => false
+      t.string :image
 
       t.timestamps
     end
