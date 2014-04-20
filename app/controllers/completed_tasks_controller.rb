@@ -9,7 +9,7 @@ class CompletedTasksController < ApplicationController
     completed_task.kid.save
     completed_task.destroy
     flash[:success] = "Completed Task Deleted"
-    redirect_to kids_path
+    redirect_to kid_completed_tasks_path(completed_task.kid.id)
   end
   
 end
