@@ -16,7 +16,11 @@ ChoreChart::Application.routes.draw do
   resources :kids, :only => [:show, :index, :update]
   get "kids/:kid_id/completed_tasks", :to => "kids#completed_tasks", :as => "kid_completed_tasks"
   
-  resources :tasks, :except => [:delete, :edit]
+  resources :tasks, :except => [:destroy, :edit]
+  
+  resources :completed_tasks, :only => [:destroy]
+  
+  
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
