@@ -13,7 +13,7 @@ ChoreChart::Application.routes.draw do
 
   resources :users, :except => [:show]
   
-  resources :kids, :only => [:edit, :index, :update]
+  resources :kids, :only => [:show, :index, :update]
   get "kids/:kid_id/completed_tasks", :to => "kids#completed_tasks", :as => "kid_completed_tasks"
   
   resources :tasks, :except => [:delete, :edit]

@@ -2,9 +2,10 @@ class KidsController < ApplicationController
   before_filter :require_login
   before_filter :require_admin
   
-  def edit
+  def show
     @kid = Kid.find(params[:id])
     @title = @kid.name
+    @tasks = Task.all
   end
   
   def index
@@ -13,6 +14,7 @@ class KidsController < ApplicationController
   end
   
   def update
+    params[:kid][:task_ids] ||= []
     @kid = Kid.find(params[:id])
     if @kid.update_attributes(params[:kid])
       @kid.reload
@@ -20,7 +22,7 @@ class KidsController < ApplicationController
       redirect_to kids_path
     else
       @title = @kid.name
-      render :edit
+      render :show
     end
   end
   

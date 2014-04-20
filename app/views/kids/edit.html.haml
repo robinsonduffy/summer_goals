@@ -1,8 +1,0 @@
-= link_to "View Completed Tasks", kid_completed_tasks_path(@kid.id)
-= form_for @kid do |f|
-  = render "shared/error_messages", :object => f.object
-  %div.form-field
-    = f.label :points
-    = f.text_field :points
-  %div.form-actions
-    = f.submit "Save"

@@ -17,7 +17,7 @@ class PagesController < ApplicationController
   def chore_chart
     @kid = Kid.find(params[:kid_id])
     @title = "#{@kid.name}'s Chore Chart"
-    @tasks = Task.all
+    @tasks = @kid.tasks
     @date = Date.today.beginning_of_week + (params[:day_id].to_i - 1)
     @day_id = params[:day_id].to_i
   end
