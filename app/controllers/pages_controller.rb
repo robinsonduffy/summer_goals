@@ -31,5 +31,20 @@ class PagesController < ApplicationController
     kid.save
     redirect_to chore_chart_day_path(kid.id, params[:day_id])
   end
+  
+  def chore_chart_reward_select
+    @kid = Kid.find(params[:kid_id])
+    @title = "#{@kid.name} - Select Reward"
+    @rewards = Reward.all
+  end
+  
+  def chore_chart_reward_purchase
+    kid = Kid.find(params[:kid_id])
+    reward = Reward.find(params[:reward_id])
+    kid.points = kid.points - reward.points
+    kid.save if kid.points >= 0
+    flash[:success] = "Reward Purchased (#{reward.name})"
+    redirect_to reward_select_path(kid.id)
+  end
 
 end
