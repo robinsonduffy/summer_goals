@@ -1,5 +1,7 @@
 class PagesController < ApplicationController
   
+  include PagesHelper
+  
   def home
   end
   
@@ -18,14 +20,14 @@ class PagesController < ApplicationController
     @kid = Kid.find(params[:kid_id])
     @title = "#{@kid.name}'s Chore Chart"
     @tasks = @kid.tasks
-    @date = Date.today.beginning_of_week + (params[:day_id].to_i - 1)
+    @date = start_of_week + (params[:day_id].to_i)
     @day_id = params[:day_id].to_i
   end
   
   def chore_chart_save
     kid = Kid.find(params[:kid_id])
     task = Task.find(params[:task_id])
-    completed_task = CompletedTask.new(:kid_id => kid.id, :task_id => task.id, :date => Date.today.beginning_of_week + (params[:day_id].to_i - 1))
+    completed_task = CompletedTask.new(:kid_id => kid.id, :task_id => task.id, :date => start_of_week + (params[:day_id].to_i))
     completed_task.save
     kid.points = kid.points + task.points
     kid.save

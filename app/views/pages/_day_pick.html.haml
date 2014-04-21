@@ -1,10 +1,10 @@
 = render "reward_star"
 %ul#days
-	%li{:class => ("selected" if @day_id == 0)}= link_to "Sunday", chore_chart_day_path(@kid.id,0)
-	%li{:class => ("selected" if @day_id == 1)}= link_to "Monday", chore_chart_day_path(@kid.id,1)
-	%li{:class => ("selected" if @day_id == 2)}= link_to "Tuesday", chore_chart_day_path(@kid.id,2)	
-	%li{:class => ("selected" if @day_id == 3)}= link_to "Wednesday", chore_chart_day_path(@kid.id,3)
-	%li{:class => ("selected" if @day_id == 4)}= link_to "Thursday", chore_chart_day_path(@kid.id,4)
-	%li{:class => ("selected" if @day_id == 5)}= link_to "Friday", chore_chart_day_path(@kid.id,5)
-	%li{:class => ("selected" if @day_id == 6)}= link_to "Saturday", chore_chart_day_path(@kid.id,6)
+	%li{:class => ("selected" if @day_id == 0)}= link_to "Monday", chore_chart_day_path(@kid.id,0)
+	%li{:class => ("selected" if @day_id == 1)}= link_to "Tuesday", chore_chart_day_path(@kid.id,1)	
+	%li{:class => ("selected" if @day_id == 2)}= link_to "Wednesday", chore_chart_day_path(@kid.id,2)
+	%li{:class => ("selected" if @day_id == 3)}= link_to "Thursday", chore_chart_day_path(@kid.id,3)
+	%li{:class => ("selected" if @day_id == 4)}= link_to "Friday", chore_chart_day_path(@kid.id,4)
+	%li{:class => ("selected" if @day_id == 5)}= link_to "Saturday", chore_chart_day_path(@kid.id,5)
+	%li{:class => ("selected" if @day_id == 6)}= link_to "Sunday", chore_chart_day_path(@kid.id,6)
 		
