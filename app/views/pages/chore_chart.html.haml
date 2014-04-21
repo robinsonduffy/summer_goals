@@ -3,9 +3,9 @@
 			
 	%ul#tasks
 		- @tasks.each do |task|
-			%li{:class => ("disabled" if @kid.completed_tasks.where(:date => @date, :task_id => task.id).first.try(:task_id) == task.id)}
+			%li{:id => "li-task-#{task.id}", :class => ("disabled" if @kid.completed_tasks.where(:date => @date, :task_id => task.id).first.try(:task_id) == task.id)}
 				%label{:for => "task-#{task.id}"}
 					%img{:src => task.image}
 					%br
 					= task.name
-				%input{:id => "task-#{task.id}", :type => "radio", :name => "task_id", :value => task.id, :disabled => @kid.completed_tasks.where(:date => @date, :task_id => task.id).first.try(:task_id) == task.id, :onchange => "$('#chore-chart').submit()"}
+				%input{:id => "task-#{task.id}", :type => "radio", :name => "task_id", :value => task.id, :disabled => @kid.completed_tasks.where(:date => @date, :task_id => task.id).first.try(:task_id) == task.id, :onchange => "$('#li-task-#{task.id}').toggleClass('disabled'); $('#chore-chart').submit()"}
