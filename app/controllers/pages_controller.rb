@@ -11,9 +11,10 @@ class PagesController < ApplicationController
   end
   
   def chore_chart_date_select
-    @kid = Kid.find(params[:kid_id])
-    @title = "#{@kid.name}'s Chore Chart"
-    @day_id = 999
+    kid = Kid.find(params[:kid_id])
+    day_id = Time.current.wday - 1
+    day_id = 6 if day_id == -1
+    redirect_to chore_chart_day_url(kid, day_id)
   end
   
   def chore_chart
