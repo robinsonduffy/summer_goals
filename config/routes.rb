@@ -10,6 +10,7 @@ ChoreChart::Application.routes.draw do
   get "chore_chart/:kid_id/rewards", :to => "pages#chore_chart_reward_select", :as => "reward_select"
   get "chore_chart/:kid_id/:day_id", :to => "pages#chore_chart", :as => "chore_chart_day"
   post "chore_chart/:kid_id/:day_id", :to => "pages#chore_chart_save"
+  get "chore_chart/:kid_id/:day_id/delete/:task_id", :to => "pages#chore_chart_task_delete", :as => "remove_task_from_chore_chart"
   
   resources :sessions, :only => [:create]
 

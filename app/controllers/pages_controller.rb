@@ -49,5 +49,18 @@ class PagesController < ApplicationController
     flash[:success] = "Reward Purchased (#{reward.name})"
     redirect_to reward_select_path(kid.id)
   end
+  
+  def chore_chart_task_delete
+    task_to_delete = CompletedTask.where(:kid_id => params[:kid_id], :task_id => params[:task_id], :date => start_of_week + (params[:day_id].to_i)).first
+    if task_to_delete.nil?
+      redirect_to root_path
+    else
+      task_to_delete.kid.points = task_to_delete.kid.points - task_to_delete.task.points
+      task_to_delete.kid.points = 0 if task_to_delete.kid.points < 0
+      task_to_delete.kid.save
+      task_to_delete.destroy unless task_to_delete.nil?
+      redirect_to chore_chart_day_path(params[:kid_id], params[:day_id])
+    end
+  end
 
 end
