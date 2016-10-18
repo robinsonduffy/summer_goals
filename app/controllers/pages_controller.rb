@@ -56,7 +56,6 @@ class PagesController < ApplicationController
       redirect_to root_path
     else
       task_to_delete.kid.points = task_to_delete.kid.points - task_to_delete.task.points
-      task_to_delete.kid.points = 0 if task_to_delete.kid.points < 0
       task_to_delete.kid.save
       task_to_delete.destroy unless task_to_delete.nil?
       redirect_to chore_chart_day_path(params[:kid_id], params[:day_id])
