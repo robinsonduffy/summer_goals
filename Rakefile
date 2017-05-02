@@ -4,4 +4,4 @@
 require File.expand_path('../config/application', __FILE__)
 require 'rake'
 
-ChoreChart::Application.load_tasks
+SummerGoals::Application.load_tasks
