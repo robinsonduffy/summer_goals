@@ -3,7 +3,7 @@
 development:
   adapter: postgresql
   database: chore_chart_dev
-  username: chore_chart
+  username: vagrant_db_user
   password: dbpassword
   host: localhost
 

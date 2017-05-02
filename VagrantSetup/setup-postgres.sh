@@ -1,7 +1,7 @@
 #!/bin/sh -e
 
 # Edit the following to change the name of the database user that will be created:
-APP_DB_USER=chore_chart
+APP_DB_USER=vagrant_db_user
 APP_DB_PASS=dbpassword
 
 # Edit the following to change the name of the database that is created (defaults to the user name)
