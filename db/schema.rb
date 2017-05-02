@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140420203248) do
+ActiveRecord::Schema.define(:version => 20170502003048) do
 
   create_table "completed_tasks", :force => true do |t|
     t.integer  "kid_id"
@@ -44,11 +44,12 @@ ActiveRecord::Schema.define(:version => 20140420203248) do
   end
 
   create_table "tasks", :force => true do |t|
-    t.string   "name",                      :null => false
-    t.integer  "points",     :default => 1, :null => false
+    t.string   "name",                          :null => false
+    t.integer  "points",     :default => 1,     :null => false
     t.string   "image"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "required",   :default => false, :null => false
   end
 
   create_table "users", :force => true do |t|
