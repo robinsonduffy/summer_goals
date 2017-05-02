@@ -23,6 +23,7 @@ ul#tasks li label {float:left; border:1px solid #666; margin:10px; padding:10px;
 ul#tasks li input {display:none;}
 ul#tasks li.disabled label {background-color:#ccc;}
 ul#tasks li label img {width:100px; height:100px;}
+ul#tasks li.required {background-image: url('/images/one_star.png'); background-repeat:no-repeat;}
 
 ul#rewards {float:left; clear:left; margin:0; margin-top:50px; list-style:none; padding:0px;}
 ul#rewards li {float:left;}
