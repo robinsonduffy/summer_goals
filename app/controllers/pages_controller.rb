@@ -39,15 +39,22 @@ class PagesController < ApplicationController
     @kid = Kid.find(params[:kid_id])
     @title = "#{@kid.name} - Select Reward"
     @rewards = Reward.all
+    unless @kid.all_required_tasks_completed_today
+      deny_access_to_rewards(@kid.id)
+    end
   end
   
   def chore_chart_reward_purchase
     kid = Kid.find(params[:kid_id])
-    reward = Reward.find(params[:reward_id])
-    kid.points = kid.points - reward.points
-    kid.save if kid.points >= 0
-    flash[:success] = "Reward Purchased (#{reward.name})"
-    redirect_to reward_select_path(kid.id)
+    if kid.all_required_tasks_completed_today
+      reward = Reward.find(params[:reward_id])
+      kid.points = kid.points - reward.points
+      kid.save if kid.points >= 0
+      flash[:success] = "Reward Purchased (#{reward.name})"
+      redirect_to reward_select_path(kid.id)
+    else
+      deny_access_to_rewards(kid.id)
+    end
   end
   
   def chore_chart_task_delete
@@ -60,6 +67,13 @@ class PagesController < ApplicationController
       task_to_delete.destroy unless task_to_delete.nil?
       redirect_to chore_chart_day_path(params[:kid_id], params[:day_id])
     end
+  end
+  
+  def deny_access_to_rewards(kid_id)
+    flash[:error] = "You have not completed all your required tasks today"
+    day_id = Time.current.wday - 1
+    day_id = 6 if day_id == -1
+    redirect_to chore_chart_day_path(kid_id, day_id)
   end
 
 end
