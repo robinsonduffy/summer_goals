@@ -1,4 +1,4 @@
-ChoreChart::Application.routes.draw do
+SummerGoals::Application.routes.draw do
   
   root :to => "pages#choose_kid"
   

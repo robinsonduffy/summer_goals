@@ -1,6 +1,6 @@
 module ApplicationHelper
   def title
-    @base_title = "ChoreChart"
+    @base_title = "SummerGoals"
     if @title.nil?
       @base_title
     else
