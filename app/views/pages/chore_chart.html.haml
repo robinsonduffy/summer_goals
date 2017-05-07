@@ -3,7 +3,7 @@
 			
 	%ul#tasks
 		- @tasks.each do |task|
-			%li{:id => "li-task-#{task.id}", :class => [("disabled" if @kid.completed_tasks.where(:date => @date, :task_id => task.id).first.try(:task_id) == task.id), ("required" if task.required)]}
+			%li{:id => "li-task-#{task.id}", :class => [("disabled" if @kid.completed_tasks.where(:date => @date, :task_id => task.id).first.try(:task_id) == task.id)]}
 				%label{:for => "task-#{task.id}"}
 					%img{:src => task.image}
 					%br
