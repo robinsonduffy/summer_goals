@@ -9,7 +9,7 @@ class KidsController < ApplicationController
   end
   
   def index
-    @kids = Kid.all
+    @kids = Kid.order(:name).all
     @title = "Kids"
   end
   
