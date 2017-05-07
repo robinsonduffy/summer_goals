@@ -5,10 +5,10 @@ SummerGoals::Application.routes.draw do
   get "login" => "sessions#new", :as => "login"
   get "logout" => "sessions#destroy", :as => "logout"
   
-  get "chore_chart/:kid_id", :to => "pages#chore_chart_date_select", :as => "chore_chart"
-  get "chore_chart/:kid_id/:day_id", :to => "pages#chore_chart", :as => "chore_chart_day"
-  post "chore_chart/:kid_id/:day_id", :to => "pages#chore_chart_save"
-  get "chore_chart/:kid_id/:day_id/delete/:task_id", :to => "pages#chore_chart_task_delete", :as => "remove_task_from_chore_chart"
+  get "goal_chart/:kid_id", :to => "pages#chore_chart_date_select", :as => "chore_chart"
+  get "goal_chart/:kid_id/:day_id", :to => "pages#chore_chart", :as => "chore_chart_day"
+  post "goal_chart/:kid_id/:day_id", :to => "pages#chore_chart_save"
+  get "goal_chart/:kid_id/:day_id/delete/:task_id", :to => "pages#chore_chart_task_delete", :as => "remove_task_from_chore_chart"
   
   resources :sessions, :only => [:create]
 
