@@ -17,8 +17,9 @@ class Kid < ActiveRecord::Base
   end
   
   def get_progress_for_task(task_id)
-    completed = self.completed_tasks.where(:task_id => task_id).size
     needed = self.get_goal_for_task(task_id)
+    completed = self.completed_tasks.where(:task_id => task_id).size
+    completed = needed if completed > needed
     return ((completed.to_f / needed) * 100).to_i
   end
   

@@ -13,7 +13,7 @@ class PagesController < ApplicationController
   def chore_chart
     @kid = Kid.find(params[:kid_id])
     @title = "#{@kid.name}'s Goal Chart"
-    @tasks = @kid.tasks
+    @tasks = @kid.tasks.order(:name)
   end
   
   def chore_chart_save

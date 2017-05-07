@@ -1,16 +1,39 @@
 %form#record-progress{:method => :post}
 	%h3 Record Progress
-	%p= select_tag "task_id", options_for_select([["-- Choose a goal --" , "" ]] + @kid.tasks.order(:name).collect {|p| [ p.name, p.id ] })
+	%p= select_tag "task_id", options_for_select([["-- Choose a goal --" , "" ]] + @tasks.collect {|p| [ p.name, p.id ] })
 	%p
 		%label Note
 		= text_field_tag "note" 
 	%p= submit_tag "Submit"
+		
+%div#kid-task-summaries
+	%h3 Goal Progress
+	- @tasks.each do |task|
+		%div.task-summary{:id => "chart_div_" + task.id.to_s}
 			
-	%ul#tasks
-		- @tasks.each do |task|
-			%li{:id => "li-task-#{task.id}", :class => [("disabled" if @kid.completed_tasks.where(:date => @date, :task_id => task.id).first.try(:task_id) == task.id)]}
-				%label{:for => "task-#{task.id}"}
-					%img{:src => task.image}
-					%br
-					= task.name
-				%input{:id => "task-#{task.id}", :type => "radio", :name => "task_id", :value => task.id, :disabled => @kid.completed_tasks.where(:date => @date, :task_id => task.id).first.try(:task_id) == task.id, :onchange => "$('#li-task-#{task.id}').toggleClass('disabled'); $('#chore-chart').submit()"}
+			
+= javascript_include_tag "https://www.google.com/jsapi"
+%script
+	// Load the Visualization API and the piechart package.
+	google.load('visualization', '1.0', {'packages':['corechart']});
+
+	// Set a callback to run when the Google Visualization API is loaded.
+	google.setOnLoadCallback(drawChart);
+
+	// Callback that creates and populates a data table,
+	// instantiates the pie chart, passes in the data and
+	// draws it.
+	function drawChart() {
+	- @tasks.each do |task|
+		//Create the data table.
+		var data_#{task.id} = new google.visualization.DataTable();
+		data_#{task.id}.addColumn('string','Piece');
+		data_#{task.id}.addColumn('number','Percent');
+		data_#{task.id}.addRow(['Completed', #{@kid.get_progress_for_task(task.id)}]);
+		data_#{task.id}.addRow(['Not Completed', #{100 - @kid.get_progress_for_task(task.id)}]);
+		// Set chart options
+		var options_#{task.id} = {'title':'#{task.name}', legend:{'position':'none'}, pieHole:0.4, backgroundColor:'white', colors:['blue','white'], pieSliceBorderColor:'blue', pieSliceText:'none', enableInteractivity:false};
+		// Instantiate and draw our chart, passing in some options.
+		var chart_#{task.id} = new google.visualization.PieChart(document.getElementById('chart_div_#{task.id}'));
+		chart_#{task.id}.draw(data_#{task.id}, options_#{task.id});
+	}
