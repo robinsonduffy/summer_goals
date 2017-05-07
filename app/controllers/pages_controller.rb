@@ -35,28 +35,6 @@ class PagesController < ApplicationController
     redirect_to chore_chart_day_path(kid.id, params[:day_id])
   end
   
-  def chore_chart_reward_select
-    @kid = Kid.find(params[:kid_id])
-    @title = "#{@kid.name} - Select Reward"
-    @rewards = Reward.all
-    unless @kid.all_required_tasks_completed_today
-      deny_access_to_rewards(@kid.id)
-    end
-  end
-  
-  def chore_chart_reward_purchase
-    kid = Kid.find(params[:kid_id])
-    if kid.all_required_tasks_completed_today
-      reward = Reward.find(params[:reward_id])
-      kid.points = kid.points - reward.points
-      kid.save if kid.points >= 0
-      flash[:success] = "Reward Purchased (#{reward.name})"
-      redirect_to reward_select_path(kid.id)
-    else
-      deny_access_to_rewards(kid.id)
-    end
-  end
-  
   def chore_chart_task_delete
     task_to_delete = CompletedTask.where(:kid_id => params[:kid_id], :task_id => params[:task_id], :date => start_of_week + (params[:day_id].to_i)).first
     if task_to_delete.nil?

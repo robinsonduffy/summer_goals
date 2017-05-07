@@ -1,2 +1,0 @@
-%div#points
-	%p{:id => "star", :class => ("disabled" unless @kid.all_required_tasks_completed_today)}= link_to @kid.points, reward_select_path(@kid.id)

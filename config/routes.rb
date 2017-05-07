@@ -6,8 +6,6 @@ SummerGoals::Application.routes.draw do
   get "logout" => "sessions#destroy", :as => "logout"
   
   get "chore_chart/:kid_id", :to => "pages#chore_chart_date_select", :as => "chore_chart"
-  post "chore_chart/:kid_id/rewards", :to => "pages#chore_chart_reward_purchase"
-  get "chore_chart/:kid_id/rewards", :to => "pages#chore_chart_reward_select", :as => "reward_select"
   get "chore_chart/:kid_id/:day_id", :to => "pages#chore_chart", :as => "chore_chart_day"
   post "chore_chart/:kid_id/:day_id", :to => "pages#chore_chart_save"
   get "chore_chart/:kid_id/:day_id/delete/:task_id", :to => "pages#chore_chart_task_delete", :as => "remove_task_from_chore_chart"
@@ -22,8 +20,6 @@ SummerGoals::Application.routes.draw do
   resources :tasks, :except => [:destroy, :edit]
   
   resources :completed_tasks, :only => [:destroy]
-  
-  resources :rewards, :except => [:edit]
   
   
 
