@@ -2,7 +2,7 @@
 #   gem install sqlite3
 development:
   adapter: postgresql
-  database: chore_chart_dev
+  database: summer_goals_dev
   username: vagrant_db_user
   password: dbpassword
   host: localhost
