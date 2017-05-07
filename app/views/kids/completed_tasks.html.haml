@@ -3,12 +3,10 @@
 		%tr
 			%th Date
 			%th Task
-			%th Points
 			%th
 	%tbody
 		- @completed_tasks.each do |completed_task|
 			%tr
 				%td= completed_task.date
 				%td= completed_task.task.name
-				%td= completed_task.task.points
 				%td= link_to "Delete", completed_task, :method => :delete, :confirm => "Are you sure?  This cannot be undone!", :title => "Delete completed task"
