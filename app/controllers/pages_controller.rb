@@ -19,9 +19,9 @@ class PagesController < ApplicationController
   def chore_chart_save
     kid = Kid.find(params[:kid_id])
     task = Task.find(params[:task_id])
-    completed_task = CompletedTask.new(:kid_id => kid.id, :task_id => task.id, :date => start_of_week + (params[:day_id].to_i))
+    completed_task = CompletedTask.new(:kid_id => kid.id, :task_id => task.id, :date => current_date, :note => params[:note])
     completed_task.save
-    redirect_to chore_chart_day_path(kid.id, params[:day_id])
+    redirect_to chore_chart_path(kid.id)
   end
   
   def chore_chart_task_delete

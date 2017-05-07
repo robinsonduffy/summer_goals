@@ -1,4 +1,10 @@
-%form#chore-chart{:method => :post}
+%form#record-progress{:method => :post}
+	%h3 Record Progress
+	%p= select_tag "task_id", options_for_select([["-- Choose a goal --" , "" ]] + @kid.tasks.order(:name).collect {|p| [ p.name, p.id ] })
+	%p
+		%label Note
+		= text_field_tag "note" 
+	%p= submit_tag "Submit"
 			
 	%ul#tasks
 		- @tasks.each do |task|
