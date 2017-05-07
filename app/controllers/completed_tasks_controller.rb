@@ -4,8 +4,6 @@ class CompletedTasksController < ApplicationController
   
   def destroy
     completed_task = CompletedTask.find(params[:id])
-    completed_task.kid.points = completed_task.kid.points - completed_task.task.points
-    completed_task.kid.save
     completed_task.destroy
     flash[:success] = "Completed Task Deleted"
     redirect_to kid_completed_tasks_path(completed_task.kid.id)

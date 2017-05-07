@@ -30,8 +30,6 @@ class PagesController < ApplicationController
     task = Task.find(params[:task_id])
     completed_task = CompletedTask.new(:kid_id => kid.id, :task_id => task.id, :date => start_of_week + (params[:day_id].to_i))
     completed_task.save
-    kid.points = kid.points + task.points
-    kid.save
     redirect_to chore_chart_day_path(kid.id, params[:day_id])
   end
   

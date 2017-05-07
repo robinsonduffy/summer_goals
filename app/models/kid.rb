@@ -3,12 +3,10 @@ class Kid < ActiveRecord::Base
   has_many :assigned_tasks
   has_many :tasks, through: :assigned_tasks
   
-  attr_accessible :name, :points, :task_ids
+  attr_accessible :name
   
   validates :name, :presence => true, 
                     :uniqueness => {:case_sensitve => false}
-                    
-  validates :points, :numericality => true
   
   def get_goal_for_task(task_id)
     task = Task.find(task_id)

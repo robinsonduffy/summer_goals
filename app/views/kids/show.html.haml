@@ -2,9 +2,6 @@
 = form_for @kid do |f|
 	= render "shared/error_messages", :object => f.object
 	%div.form-field
-		= f.label :points
-		= f.text_field :points
-	%div.form-field
 		= f.label "Goals"
 		%table#kid-goals
 			%thead
