@@ -28,7 +28,7 @@ class KidsController < ApplicationController
     if @kid.update_attributes(params[:kid])
       @kid.reload
       flash[:success] = "Updated #{@kid.name}"
-      redirect_to kids_path
+      redirect_to kid_path(@kid)
     else
       @title = @kid.name
       render :show
