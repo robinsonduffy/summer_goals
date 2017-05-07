@@ -1,6 +1,6 @@
 class Task < ActiveRecord::Base
   has_many :completed_tasks
-  has_and_belongs_to_many :kids
+  has_many :assigned_tasks
   
   attr_accessible :name, :points, :image
   

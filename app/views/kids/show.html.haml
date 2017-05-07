@@ -5,10 +5,11 @@
 		= f.label :points
 		= f.text_field :points
 	%div.form-field
-		= f.label :tasks
+		= f.label "Goals"
 		- @tasks.each do |task|
 			%br
-			= check_box_tag "kid[task_ids][]",task.id,@kid.tasks.include?(task)
+			= check_box_tag "task_ids[]",task.id,@kid.tasks.include?(task)
 			= task.name
+			= text_field_tag "goals["+task.id.to_s+"]", @kid.get_goal_for_task(task.id)
 	%div.form-actions
 		= f.submit "Save"
