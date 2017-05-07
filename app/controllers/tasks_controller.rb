@@ -3,7 +3,7 @@ class TasksController < ApplicationController
   before_filter :require_admin
   
   def index
-    @tasks = Task.all
+    @tasks = Task.order(:name).all
     @title = "Tasks"
   end
   
