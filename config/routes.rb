@@ -7,7 +7,7 @@ SummerGoals::Application.routes.draw do
   
   get "goal_chart/:kid_id", :to => "pages#chore_chart", :as => "chore_chart"
   post "goal_chart/:kid_id", :to => "pages#chore_chart_save"
-  get "goal_chart/:kid_id/:task_id", :to => "pages#kid_task_detail"
+  get "goal_chart/:kid_id/:task_id", :to => "pages#kid_task_detail", :as => "kid_task_detail"
   get "goal_chart/:kid_id/delete/:task_id", :to => "pages#chore_chart_task_delete", :as => "remove_task_from_chore_chart"
   
   resources :sessions, :only => [:create]

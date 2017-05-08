@@ -6,10 +6,12 @@
 		= text_field_tag "note" 
 	%p= submit_tag "Submit"
 		
-%div#kid-task-summaries
+%div#task-summaries
 	%h3 Goal Progress
 	- @tasks.each do |task|
-		%div.task-summary{:id => "chart_div_" + task.id.to_s}
+		%div.task-summary
+			%h4= link_to task.name, kid_task_detail_path(@kid, task.id)
+			%div{:id => "chart_div_" + task.id.to_s}
 			
 			
 = javascript_include_tag "https://www.google.com/jsapi"
@@ -32,7 +34,7 @@
 		data_#{task.id}.addRow(['Completed', #{@kid.get_progress_for_task(task.id)}]);
 		data_#{task.id}.addRow(['Not Completed', #{100 - @kid.get_progress_for_task(task.id)}]);
 		// Set chart options
-		var options_#{task.id} = {'title':'#{task.name}', legend:{'position':'none'}, pieHole:0.4, backgroundColor:'white', colors:['blue','white'], pieSliceBorderColor:'blue', pieSliceText:'none', enableInteractivity:false};
+		var options_#{task.id} = {legend:{'position':'none'}, pieHole:0.4, backgroundColor:'white', colors:['blue','white'], pieSliceBorderColor:'blue', pieSliceText:'none', enableInteractivity:false,  chartArea:{left:0,top:0,width:'100%',height:'100%'}};
 		// Instantiate and draw our chart, passing in some options.
 		var chart_#{task.id} = new google.visualization.PieChart(document.getElementById('chart_div_#{task.id}'));
 		chart_#{task.id}.draw(data_#{task.id}, options_#{task.id});
