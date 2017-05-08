@@ -33,5 +33,13 @@ class PagesController < ApplicationController
       redirect_to chore_chart_day_path(params[:kid_id], params[:day_id])
     end
   end
+  
+  def kid_task_detail
+    @kid = Kid.find(params[:kid_id])
+    task = Task.find(params[:task_id])
+    redirect_to chore_chart_path(@kid.id) and return unless @kid.tasks.include?task
+    @title = "#{@kid.name} - #{task.name}"
+    @completed_tasks = @kid.completed_tasks.where(:task_id => task.id).order(:date)
+  end
 
 end
