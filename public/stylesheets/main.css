@@ -24,3 +24,8 @@ table#kid-completed-tasks td {border:1px solid #ccc;}
 div.flash {border: 1px solid; padding:5px; margin-bottom:10px; font-weight:bold;}
 div.flash.error {border-color:#fe5454; background-color:#ffcaca; color:#fe5454;}
 div.flash.success {border-color:#2774dc; background-color:#9bb7dc; color:#2774dc;}
+
+
+#record-progress #task_id {font-size:24px;}
+#record-progress #note {font-size:24px; width:100%;}
+#record-progress input[type="submit"] {font-size: 24px; border: 1px solid gray; background-color: white;}
