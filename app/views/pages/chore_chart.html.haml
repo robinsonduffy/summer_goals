@@ -1,3 +1,10 @@
+%div#task-summaries
+	%h3 Goal Progress
+	- @tasks.each do |task|
+		%div.task-summary
+			%h4= link_to task.name, kid_task_detail_path(@kid, task.id)
+			%div{:id => "chart_div_" + task.id.to_s}
+            
 %form#record-progress{:method => :post}
 	%h3 Record Progress
 	%p= select_tag "task_id", options_for_select([["-- Choose a goal --" , "" ]] + @tasks.collect {|p| [ p.name, p.id ] })
@@ -5,13 +12,6 @@
 		%label Note
 		= text_field_tag "note" 
 	%p= submit_tag "Submit"
-		
-%div#task-summaries
-	%h3 Goal Progress
-	- @tasks.each do |task|
-		%div.task-summary
-			%h4= link_to task.name, kid_task_detail_path(@kid, task.id)
-			%div{:id => "chart_div_" + task.id.to_s}
 			
 			
 = javascript_include_tag "https://www.google.com/jsapi"
