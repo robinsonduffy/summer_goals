@@ -2,7 +2,12 @@
 	%h3 Goal Progress
 	- @tasks.each do |task|
 		%div.task-summary
-			%h4= link_to task.name, kid_task_detail_path(@kid, task.id)
+			%h4
+				= link_to task.name, kid_task_detail_path(@kid, task.id)
+				%br
+				= @kid.get_completed_for_task(task.id)
+				%span /
+				=@kid.get_goal_for_task(task.id)
 			%div{:id => "chart_div_" + task.id.to_s}
             
 %form#record-progress{:method => :post}
