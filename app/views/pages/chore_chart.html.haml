@@ -8,7 +8,7 @@
 				= @kid.get_completed_for_task(task.id)
 				%span /
 				=@kid.get_goal_for_task(task.id)
-			%div{:id => "chart_div_" + task.id.to_s}
+			%div{:id => "chart_div_" + task.id.to_s, :class=>"chart_div"}
             
 %form#record-progress{:method => :post}
 	%h3 Record Progress
@@ -22,7 +22,7 @@
 = javascript_include_tag "https://www.google.com/jsapi"
 %script
 	// Load the Visualization API and the piechart package.
-	google.load('visualization', '1.0', {'packages':['corechart']});
+	google.load('visualization', '1.0', {'packages':['corechart', 'gauge']});
 
 	// Set a callback to run when the Google Visualization API is loaded.
 	google.setOnLoadCallback(drawChart);
@@ -32,15 +32,30 @@
 	// draws it.
 	function drawChart() {
 	- @tasks.each do |task|
-		//Create the data table.
-		var data_#{task.id} = new google.visualization.DataTable();
-		data_#{task.id}.addColumn('string','Piece');
-		data_#{task.id}.addColumn('number','Percent');
-		data_#{task.id}.addRow(['Completed', #{@kid.get_progress_for_task(task.id)}]);
-		data_#{task.id}.addRow(['Not Completed', #{100 - @kid.get_progress_for_task(task.id)}]);
-		// Set chart options
-		var options_#{task.id} = {legend:{'position':'none'}, pieHole:0.4, backgroundColor:'white', colors:['blue','white'], pieSliceBorderColor:'blue', pieSliceText:'none', enableInteractivity:false,  chartArea:{left:0,top:0,width:'100%',height:'100%'}};
-		// Instantiate and draw our chart, passing in some options.
-		var chart_#{task.id} = new google.visualization.PieChart(document.getElementById('chart_div_#{task.id}'));
-		chart_#{task.id}.draw(data_#{task.id}, options_#{task.id});
+		// //Create the data table.
+		// var data_#{task.id} = new google.visualization.DataTable();
+		// data_#{task.id}.addColumn('string','Piece');
+		// data_#{task.id}.addColumn('number','Percent');
+		// data_#{task.id}.addRow(['Completed', #{@kid.get_progress_for_task(task.id)}]);
+		// data_#{task.id}.addRow(['Not Completed', #{100 - @kid.get_progress_for_task(task.id)}]);
+		// // Set chart options
+		// var options_#{task.id} = {legend:{'position':'none'}, pieHole:0.4, backgroundColor:'white', colors:['blue','white'], pieSliceBorderColor:'blue', pieSliceText:'none', enableInteractivity:false,  chartArea:{left:0,top:0,width:'100%',height:'100%'}};
+		// // Instantiate and draw our chart, passing in some options.
+		// var chart_#{task.id} = new google.visualization.PieChart(document.getElementById('chart_div_#{task.id}'));
+		// chart_#{task.id}.draw(data_#{task.id}, options_#{task.id});
+		
+		var g_data_#{task.id} = new google.visualization.DataTable();
+		g_data_#{task.id}.addColumn('string', 'Label');
+		g_data_#{task.id}.addColumn('number', 'Value');
+		g_data_#{task.id}.addRow(['', #{@kid.get_progress_for_task(task.id)}]);
+		console.log(g_data_#{task.id});
+		var g_options_#{task.id} = {
+		redFrom: 66, redTo: 100,
+		yellowFrom: 33, yellowTo: 66,
+		greenFrom: 0, greenTo:33,
+		minorTicks: 0, majorTicks: ["","","",""]
+		};
+		
+		var g_chart_#{task.id} = new google.visualization.Gauge(document.getElementById('chart_div_#{task.id}'));
+		g_chart_#{task.id}.draw(g_data_#{task.id}, g_options_#{task.id});
 	}
