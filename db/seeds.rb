@@ -5,3 +5,12 @@
 #
 #   cities = City.create([{ :name => 'Chicago' }, { :name => 'Copenhagen' }])
 #   Mayor.create(:name => 'Daley', :city => cities.first)
+
+case Rails.env
+when "development"
+   Kid.create(:name => "Test Kid")
+   user = User.create(:email => "test@example.com", :password => "123456", :confirm_password => "123456")
+   user.update_attribute(:admin, true)
+when "production"
+   # do nothing
+end
